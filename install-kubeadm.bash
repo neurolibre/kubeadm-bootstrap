@@ -10,7 +10,7 @@ EOF
 
 apt-get update
 
-apt-get install -y docker-ce=17.03.2~ce-0~ubuntu-xenial
+apt-get install -y docker-ce=18.06.1~ce-0~ubuntu-xenial
 
 systemctl stop docker
 modprobe overlay
@@ -20,6 +20,6 @@ systemctl start docker
 
 # Install kubernetes components!
 apt-get install -y \
-        kubelet=1.9.2-00 \
-        kubeadm=1.9.2-00 \
-        kubernetes-cni=0.6.0-00
+        kubelet \
+        kubeadm \
+        kubernetes-cni
