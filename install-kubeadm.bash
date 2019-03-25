@@ -10,7 +10,7 @@ EOF
 
 apt-get update
 
-apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu
+apt-get install -y docker-ce=18.09.3~3-0~ubuntu
 
 systemctl stop docker
 modprobe overlay
