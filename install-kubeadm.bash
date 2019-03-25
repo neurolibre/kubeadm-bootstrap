@@ -19,7 +19,8 @@ rm -rf /var/lib/docker/*
 systemctl start docker
 
 # Install kubernetes components!
+apt-get install -y kubernetes-cni=0.6.0-00
 apt-get install -y \
         kubelet \
-        kubeadm \
-        kubernetes-cni
+        kubeadm
+
