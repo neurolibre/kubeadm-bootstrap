@@ -28,6 +28,3 @@ kubectl --namespace=kube-system patch deployment tiller-deploy --type=json --pat
 
 # Wait for tiller to be ready!
 kubectl rollout status --namespace=kube-system deployment/tiller-deploy --watch
-
-# usefull kubernetes commands
-cat .bashrc >> /home/ubuntu/.bashrc
