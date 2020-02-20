@@ -2,17 +2,17 @@
 set -e
 
 # By now the master node should be ready!
-# Install flannel
+# Initialize kubeadm
 sudo sysctl net.bridge.bridge-nf-call-iptables=1
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
-
-# Initialize 
 sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 
 # To use the cluster
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+# Install flannel
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
 
 # Make master node a running worker node too!
 # FIXME: Use taint tolerations instead in the future
