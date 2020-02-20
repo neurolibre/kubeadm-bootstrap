@@ -19,7 +19,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Install helm
-curl https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xvz
+curl https://storage.googleapis.com/kubernetes-helm/helm-v2.14.0-linux-amd64.tar.gz | tar xvz
 mv linux-amd64/helm /usr/local/bin
 rm -rf linux-amd64
 
