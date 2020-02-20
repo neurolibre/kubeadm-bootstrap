@@ -3,8 +3,8 @@ set -e
 
 # By now the master node should be ready!
 # Initialize kubeadm
-sudo sysctl net.bridge.bridge-nf-call-iptables=1
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+sysctl net.bridge.bridge-nf-call-iptables=1
+kubeadm init --pod-network-cidr=10.244.0.0/16
 
 # To use the cluster
 mkdir -p $HOME/.kube
@@ -25,7 +25,7 @@ rm -rf linux-amd64
 
 kubectl --namespace kube-system create serviceaccount tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-helm init --service-account tiller --wait
+helm init --service-account tiller --override spec.selector.matchLabels.'name'='tiller',spec.selector.matchLabels.'app'='helm' --output yaml | sed 's@apiVersion: extensions/v1beta1@apiVersion: apps/v1@' | kubectl apply -f -
 kubectl --namespace=kube-system patch deployment tiller-deploy --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]'
 
 # Wait for tiller to be ready!
