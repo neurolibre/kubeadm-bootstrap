@@ -20,7 +20,7 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Install helm
 curl https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xvz
-sudo mv linux-amd64/helm /usr/local/bin
+mv linux-amd64/helm /usr/local/bin
 rm -rf linux-amd64
 
 kubectl --namespace kube-system create serviceaccount tiller
