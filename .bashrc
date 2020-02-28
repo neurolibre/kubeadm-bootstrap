@@ -5,7 +5,7 @@ alias cpualloc="util | grep % | awk '{print \$1}' | awk '{ sum += \$1 } END { if
 alias memalloc='util | grep % | awk '\''{print $3}'\'' | awk '\''{ sum += $1 } END { if (NR > 0) { result=(sum*100)/(NR*1600); printf result/NR "%\n" } }'\'''
 alias exec='kubectl exec -n=binderhub -it'
 alias delete='kubectl delete -n=binderhub pod'
-alias upgrade='sudo helm repo update; sudo helm upgrade binderhub jupyterhub/binderhub --version=v0.2.0-d2e3b8b -f /home/ubuntu/neurolibre-binderhub/binderhub/config.yaml -f /home/ubuntu/neurolibre-binderhub/binderhub/secrets.yaml'
+alias upgrade='sudo helm repo update; sudo helm upgrade binderhub jupyterhub/binderhub --version=v0.2.0-n121.h6d936d7 -f /home/ubuntu/neurolibre-binderhub/binderhub/config.yaml -f /home/ubuntu/neurolibre-binderhub/binderhub/secrets.yaml'
 alias logs='kubectl logs -n=binderhub'
 alias describe='kubectl describe pods -n=binderhub'
 alias pods='paste <(kubectl get pods -n=binderhub) <(kubectl get pod -o=custom-columns=NODE:.spec.nodeName,START:.metadata.creationTimestamp -n=binderhub) | column -s $'\t' -t'
