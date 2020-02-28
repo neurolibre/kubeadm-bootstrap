@@ -1,7 +1,7 @@
 #!/bin/bash
 
 num=0
-nodes=$(kubectl get nodes -o jsonpath='{range .items[*].status.addresses[?(@.type=="InternalIP")]}{.address} {end}')
+nodes=$(kubectl get nodes --selector='!node-role.kubernetes.io/master' -o jsonpath='{range .items[*].status.addresses[?(@.type=="InternalIP")]}{.address} {end}')
 
 echo "" >> /home/ubuntu/.ssh/config;
 
