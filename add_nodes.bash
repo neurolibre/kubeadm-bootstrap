@@ -1,6 +1,6 @@
 #!/bin/bash
 
-num=0
+num=1
 nb_nodes=$1
 # waiting for all nodes to be ready
 while [ $(echo $nodes | wc -w) -ne $nb_nodes ];
