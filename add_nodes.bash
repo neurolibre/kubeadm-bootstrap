@@ -10,10 +10,9 @@ do
 	echo $nodes
 done
 
-echo "" >> /home/ubuntu/.ssh/config;
-
 for n in $nodes;
-do 
+do       
+	echo "" >> /home/ubuntu/.ssh/config;
 	echo "Host node"$num >> /home/ubuntu/.ssh/config;
 	echo "        HostName "$n >> /home/ubuntu/.ssh/config;
 	echo "        User ubuntu" >> /home/ubuntu/.ssh/config; 
