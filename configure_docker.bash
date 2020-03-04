@@ -1,9 +1,12 @@
 #!/bin/bash
 
 sudo docker login $1 --username $2 --password $3
+sudo chown -R ubuntu /home/ubuntu/.docker
+sudo chgrp -R ubuntu /home/ubuntu/.docker
 nodes=$(kubectl get nodes --selector='!node-role.kubernetes.io/master' -o jsonpath='{range .items[*].status.addresses[?(@.type=="InternalIP")]}{.address} {end}')
-
+echo $nodes
 for n in $nodes;
-do 
-	sudo scp /home/ubuntu/.docker/config.json root@$n:/var/lib/kubelet/config.json
+do
+        scp -o StrictHostKeyChecking=no /home/ubuntu/.docker/config.json root@$n:/var/lib/kubelet/config.json
 done
+sudo cp /home/ubuntu/.docker/config.json /var/lib/kubelet/
