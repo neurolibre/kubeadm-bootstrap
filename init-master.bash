@@ -3,13 +3,7 @@ set -e
 
 # By now the master node should be ready!
 # Initialize kubeadm
-#cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
-#net.bridge.bridge-nf-call-ip6tables = 1
-#net.bridge.bridge-nf-call-iptables = 1
-#EOF
-#sudo sysctl --system
 sysctl net.bridge.bridge-nf-call-iptables=1
-sysctl net.bridge.bridge-nf-call-ip6tables=1
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
 # To use the cluster
