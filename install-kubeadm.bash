@@ -14,33 +14,15 @@ sudo apt-get update && sudo apt-get install -y \
   docker-ce=5:19.03.11~3-0~ubuntu-$(lsb_release -cs) \
   docker-ce-cli=5:19.03.11~3-0~ubuntu-$(lsb_release -cs)
 # Set up the Docker daemon
-cat <<EOF | sudo tee /etc/docker/daemon.json
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m"
-  },
-  "storage-driver": "overlay2"
-}
-EOF
-# Create /etc/systemd/system/docker.service.d
-sudo mkdir -p /etc/systemd/system/docker.service.d
-# Restart Docker
-sudo systemctl daemon-reload
-sudo systemctl restart docker
-sudo systemctl enable docker
-#systemctl stop docker
-#modprobe overlay
-#echo '{"storage-driver": "overlay2"}' > /etc/docker/daemon.json
-#rm -rf /var/lib/docker/*
-#systemctl start docker
+systemctl stop docker
+modprobe overlay
+echo '{"storage-driver": "overlay2"}' > /etc/docker/daemon.json
+rm -rf /var/lib/docker/*
+systemctl start docker
 
-# Install kubernetes components!
+# Install kubernetes components
 apt-get install -y kubernetes-cni=0.8.7-00
 apt-get install -y \
   kubelet=1.19.3-00 \
   kubeadm=1.19.3-00 \
   kubectl=1.19.3-00
-sudo apt-mark hold kubelet kubeadm kubectl
-
