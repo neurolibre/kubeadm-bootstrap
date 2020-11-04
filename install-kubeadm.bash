@@ -11,8 +11,8 @@ EOF
 # Install Docker CE
 sudo apt-get update && sudo apt-get install -y \
   containerd.io=1.2.13-2 \
-  docker-ce=5:19.03.11~3-0~ubuntu-$(lsb_release -cs) \
-  docker-ce-cli=5:19.03.11~3-0~ubuntu-$(lsb_release -cs)
+  docker-ce=5:19.03.11~3-0~ubuntu-xenial \
+  docker-ce-cli=5:19.03.11~3-0~ubuntu-xenial
 # Set up the Docker daemon
 systemctl stop docker
 modprobe overlay
