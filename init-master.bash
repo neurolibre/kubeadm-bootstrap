@@ -19,7 +19,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134
 kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Install and initialize helm
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 kubectl --namespace kube-system create serviceaccount tiller
 kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
 helm init --service-account tiller --wait
