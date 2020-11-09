@@ -20,10 +20,11 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Install and initialize helm
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-kubectl --namespace kube-system create serviceaccount tiller
-kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
-helm init --service-account tiller --wait
-kubectl patch deployment tiller-deploy --namespace=kube-system --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]'
+# Tiller is removed with helm3
+#kubectl --namespace kube-system create serviceaccount tiller
+#kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+#helm init --service-account tiller --wait
+#kubectl patch deployment tiller-deploy --namespace=kube-system --type=json --patch='[{"op": "add", "path": "/spec/template/spec/containers/0/command", "value": ["/tiller", "--listen=localhost:44134"]}]'
 
 # Wait for tiller to be ready!
-kubectl rollout status --namespace=kube-system deployment/tiller-deploy --watch
+#kubectl rollout status --namespace=kube-system deployment/tiller-deploy --watch
