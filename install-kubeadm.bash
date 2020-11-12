@@ -11,8 +11,8 @@ EOF
 # Install Docker CE
 sudo apt-get update && sudo apt-get install -y \
   containerd.io=1.2.13-2 \
-  docker-ce=5:19.03.11~3-0~ubuntu-xenial \
-  docker-ce-cli=5:19.03.11~3-0~ubuntu-xenial
+  docker-ce=5:19.03.12~3-0~ubuntu-xenial \
+  docker-ce-cli=5:19.03.12~3-0~ubuntu-xenial
 # Set up the Docker daemon
 systemctl stop docker
 modprobe overlay
@@ -21,8 +21,8 @@ rm -rf /var/lib/docker/*
 systemctl start docker
 
 # Install kubernetes components
-apt-get install -y kubernetes-cni=0.8.7-00
+apt-get install -y kubernetes-cni=0.7.5-00
 apt-get install -y \
-  kubelet=1.19.3-00 \
-  kubeadm=1.19.3-00 \
-  kubectl=1.19.3-00
+  kubelet=1.17.0-00 \
+  kubeadm=1.17.0-00 \
+  kubectl=1.17.0-00
